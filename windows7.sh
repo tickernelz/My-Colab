@@ -17,6 +17,10 @@ echo "in - India (Mumbai)"
 read -p "choose ngrok region: " CRP
 ./ngrok tcp --region $CRP 3388 &>/dev/null &
 echo "===================================="
+echo "Download windows files"
+echo "===================================="
+wget -O w7x64.img https://bit.ly/akuhnetw7X64
+echo "===================================="
 echo Downloading File From akuh.net
 echo "===================================="
 apt-get install qemu > /dev/null 2>&1
