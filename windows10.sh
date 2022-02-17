@@ -14,16 +14,15 @@ echo "sa - South America (Sao Paulo)"
 echo "jp - Japan (Tokyo)"
 echo "in - India (Mumbai)"
 read -p "choose ngrok region: " CRP
-nohup ./ngrok tcp 3388 &>/dev/null &
-./ngrok tcp --region $CRP 3388 &>/dev/null &
+nohup ./ngrok tcp 5900 &>/dev/null &
+./ngrok tcp --region $CRP 5900 &>/dev/null &
+echo Downloading File From akuh.net
+echo "===================================="
+sudo apt install qemu-system-x86 curl -y > /dev/null 2>&1
 echo "===================================="
 echo "Download windows files"
 echo "===================================="
-curl -L -o w10x64.img https://bit.ly/akuhnetW10x64
-echo "===================================="
-echo Downloading File From akuh.net
-echo "===================================="
-apt-get install qemu > /dev/null 2>&1
+curl -L -o lite10.qcow2 https://app.vagrantup.com/thuonghai2711/boxes/WindowsQCOW2/versions/1.1.3/providers/qemu.box
 echo "===================================="
 echo "Wait"
 echo "===================================="
@@ -46,7 +45,7 @@ echo "Username: akuh"
 echo "Password: Akuh.Net"
 echo "===================================="
 echo "===================================="
-qemu-system-x86_64 -hda w10x64.img -m 8G -smp cores=4 -net user,hostfwd=tcp::3388-:3389 -net nic -object rng-random,id=rng0,filename=/dev/urandom -device virtio-rng-pci,rng=rng0 -vga vmware -nographic  > /dev/null 2>&1
+sudo qemu-system-x86_64 -vnc :0 -hda lite10.qcow2  -smp cores=8  -m 12192M -machine usb=on -device usb-tablet > /dev/null 2>&1
 sleep 43200
 
 echo "===================================="
